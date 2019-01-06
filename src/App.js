@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { LoginProvider } from './infrastructure/login.ts';
+import { LocalStorageProvider } from './infrastructure/localStorage.ts';
+import { data } from './appData/defaultData';
 
 class App extends Component {
+  localStorageProvider;
+  loginProvider;
+  constructor() {
+    super()
+    this.localStorageProvider = new LocalStorageProvider();
+    this.loginProvider = new LoginProvider();
+  }
+  componentDidMount() {
+    // const localStorageProvider = new LocalStorageProvider();
+    for (const key in data) {
+      this.localStorageProvider.putObject(key, data[key]);
+    }
+  };
+
   render() {
+    // const aaa = new LoginProvider().isLogged();
+    console.log(this.loginProvider.isLogged());
     return (
       <div className="App">
         <header className="App-header">
