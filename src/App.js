@@ -17,6 +17,12 @@ class App extends Component {
     for (const key in data) {
       this.localStorageProvider.putObject(key, data[key]);
     }
+    if(!this.loginProvider.isLogged()) {
+      this.loginProvider.login("User1");
+    }
+    else {
+      this.loginProvider.logout();
+    }
   };
 
   render() {

@@ -16,7 +16,8 @@ export class LoginProvider implements ILoginProvider {
     constructor() {
         this.localStorageProvider = new LocalStorageProvider();
         this.cookies = new Cookies();
-      }
+    }
+
     getUser = (): {} => {
         return this.cookies.get("user");
     }
@@ -30,7 +31,7 @@ export class LoginProvider implements ILoginProvider {
     }
 
     login = (name: string): void => {
-        const user: IUser = this.localStorageProvider.getObject(name) as IUser;
+        const user: IUser = this.localStorageProvider.getUser(name) as IUser;
         if (user) {
             this.cookies.set("user", user, { path: "/" });
         }
