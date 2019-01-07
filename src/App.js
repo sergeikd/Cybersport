@@ -14,14 +14,12 @@ class App extends Component {
     this.loginProvider = new LoginProvider();
   }
   componentDidMount() {
-    // const localStorageProvider = new LocalStorageProvider();
     for (const key in data) {
       this.localStorageProvider.putObject(key, data[key]);
     }
   };
 
   render() {
-    // const aaa = new LoginProvider().isLogged();
     console.log(this.loginProvider.isLogged());
     return (
       <div className="App">

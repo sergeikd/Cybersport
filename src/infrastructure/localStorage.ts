@@ -1,8 +1,4 @@
-interface ILocalStorageProvider {
-    hasObject: (key: string) => boolean;
-    putObject: (key: string, obj: any) => void;
-    getObject: (key: string) => {};
-}
+import { ILocalStorageProvider } from "../common/interfaces";
 
 export class LocalStorageProvider implements ILocalStorageProvider {
     hasObject = (key: string): boolean => {
@@ -14,6 +10,7 @@ export class LocalStorageProvider implements ILocalStorageProvider {
     }
 
     getObject = (key: string): {} => {
-        return JSON.parse(localStorage.getItem(key));
+        const obj: string | null = localStorage.getItem(key);
+        return obj === null ? null : JSON.parse(obj);
     }
 }
