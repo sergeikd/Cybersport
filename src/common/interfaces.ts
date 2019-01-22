@@ -6,6 +6,6 @@ export interface IUser {
 
 export interface ILocalStorageProvider {
     hasObject: (key: string) => boolean;
-    putObject: (key: string, obj: any) => void;
-    getUser: (name: string) => {} | null;
+    putObject: (key: string, obj: {}) => void;
+    getUser: (name: string) => IUser | null;
 }

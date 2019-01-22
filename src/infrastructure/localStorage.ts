@@ -5,7 +5,7 @@ export class LocalStorageProvider implements ILocalStorageProvider {
         return localStorage.getItem(key) !== null;
     }
 
-    putObject = (key: string, obj: any): void => {
+    putObject = (key: string, obj: {}): void => {
         localStorage.setItem(key, JSON.stringify(obj));
     }
 

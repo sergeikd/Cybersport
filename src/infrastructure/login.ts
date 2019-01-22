@@ -5,7 +5,7 @@ import { LocalStorageProvider } from "./localStorage";
 import { IUser, ILocalStorageProvider } from "../common/interfaces";
 
 interface ILoginProvider {
-    getUser: () => {};
+    getUser: () => IUser;
     isLogged: () => boolean;
     logout: () => void;
 }
@@ -18,7 +18,7 @@ export class LoginProvider implements ILoginProvider {
         this.cookies = new Cookies();
     }
 
-    getUser = (): {} => {
+    getUser = (): IUser => {
         return this.cookies.get("user");
     }
 
@@ -33,7 +33,7 @@ export class LoginProvider implements ILoginProvider {
     login = (name: string): void => {
         const user: IUser = this.localStorageProvider.getUser(name) as IUser;
         if (user) {
-            this.cookies.set("user", user, { path: "/" });
+            this.cookies.set("user", user);
         }
     }
 }

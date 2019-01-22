@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { LoginProvider } from './infrastructure/login.ts';
 import { LocalStorageProvider } from './infrastructure/localStorage.ts';
 import { data } from './appData/defaultData';
+import { MainMenu } from './components/mainMenu';
 
 class App extends Component {
   localStorageProvider;
   loginProvider;
   constructor() {
-    super()
+    super();
     this.localStorageProvider = new LocalStorageProvider();
     this.loginProvider = new LoginProvider();
   }
@@ -17,33 +17,17 @@ class App extends Component {
     for (const key in data) {
       this.localStorageProvider.putObject(key, data[key]);
     }
-    if(!this.loginProvider.isLogged()) {
+    if (!this.loginProvider.isLogged()) {
       this.loginProvider.login("User1");
-    }
-    else {
+    } else {
       this.loginProvider.logout();
     }
-  };
+  }
 
   render() {
-    console.log(this.loginProvider.isLogged());
+    // console.log(this.loginProvider.isLogged());
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <MainMenu />
     );
   }
 }
