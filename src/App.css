@@ -9,8 +9,8 @@ body {
 
 .main-menu-container {
   display: inline-block;
-  max-width: 1280px;
-  min-width: 1280px;
+  width: 1024px;
+  min-width: 1024px;
   min-height: 100 px;
   overflow: hidden;  
   opacity: 0.9;
@@ -36,6 +36,13 @@ a.logo {
   float: right;
 }
 
-.menu {
+.menu-left {
+  padding: 10px;
+  float: left;
+}
+
+.menu, a {
   color: #A9E2F3;
+  text-decoration: none;
+  margin-right: 10px;
 }

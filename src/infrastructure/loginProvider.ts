@@ -5,12 +5,12 @@ import { LocalStorageProvider } from "./localStorage";
 import { IUser, ILocalStorageProvider } from "../common/interfaces";
 
 interface ILoginProvider {
-    getUser: () => IUser;
-    isLogged: () => boolean;
-    logout: () => void;
+    // getUser: () => IUser;
+    // isLogged: () => boolean;
+    // logout: () => void;
 }
 
-export class LoginProvider implements ILoginProvider {
+export class LoginProvider {
     private cookies: Cookies;
     private localStorageProvider: ILocalStorageProvider;
     constructor() {
