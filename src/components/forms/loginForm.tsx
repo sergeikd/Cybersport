@@ -1,22 +1,30 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
+import { withStyles } from "@material-ui/core/styles";
 
-export const LoginForm = (): JSX.Element => {
-    return (
-        <div>
-            LoginForm
-            <form>
-                <TextField
-                    className = "text-primary"
-                    id="standard-name"
-                    label="Name"
-                    // className={classes.textField}
-                    // value={this.state.name}
-                    // onChange={this.handleChange('name')}
-                    margin="normal"
-                />
-            </form>
-            {/* <Link to="/signin">Регистрация</Link> */}
-        </div>
-    );
+const styles: any = {
+    root: {
+        border: 0,
+        color: "white",
+        height: 48,
+    },
+    input: {
+        color: "white",
+    },
+
 };
+
+export function LoginForm(props: any) {
+    const { classes } = props;
+    return (
+        <form>
+            <TextField classes={{
+                root: classes.root,
+                input: classes.input,
+            }}>
+            </TextField>
+        </form>
+    );
+}
+
+export default withStyles(styles)(LoginForm);

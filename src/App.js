@@ -5,7 +5,7 @@ import { LoginProvider } from "./infrastructure/loginProvider";
 import { LocalStorageProvider } from "./infrastructure/localStorage.ts";
 import { data } from "./appData/defaultData";
 import { Header } from "./components/header/header";
-import { LoginForm } from "./components/forms/loginForm";
+import LoginForm from "./components/forms/loginForm";
 
 class App extends Component {
   localStorageProvider;
