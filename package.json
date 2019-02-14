@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://sergeikd.github.io/news-react-redux-typescript/",
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
     "@types/jest": "^23.3.10",
     "@types/node": "^10.12.15",
     "@types/react": "^16.7.17",
