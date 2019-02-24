@@ -2,15 +2,15 @@
 import { Cookies } from "react-cookie";
 import { LocalStorageProvider } from "./localStorage";
 
-import { IUser, ILocalStorageProvider } from "../common/interfaces";
+import { IUser, ILocalStorageProvider, ILoginProvider } from "../common/interfaces";
 
-interface ILoginProvider {
-    // getUser: () => IUser;
-    // isLogged: () => boolean;
-    // logout: () => void;
-}
+// interface ILoginProvider {
+//     getUser: () => IUser;
+//     isLogged: () => boolean;
+//     logout: () => void;
+// }
 
-export class LoginProvider {
+export class LoginProvider implements ILoginProvider {
     private cookies: Cookies;
     private localStorageProvider: ILocalStorageProvider;
     constructor() {
@@ -35,5 +35,10 @@ export class LoginProvider {
         if (user) {
             this.cookies.set("user", user);
         }
+    }
+
+    isUserExists = (name: string): boolean => {
+        const user: IUser = this.localStorageProvider.getUser(name) as IUser;
+        return !!user;
     }
 }

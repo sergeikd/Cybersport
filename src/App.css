@@ -5,17 +5,33 @@ body {
   background-image:url("./static-content/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  color: #A9E2F3;
+  /* text-decoration: none; */
 }
 
 .main-menu-container {
   display: inline-block;
   width: 1024px;
   min-width: 1024px;
-  min-height: 100 px;
+  /* min-height: 1024px; */
   overflow: hidden;  
   opacity: 0.9;
   background-color: #0B2161;
   border-bottom: 1px solid #0174DF ; 
+}
+
+.form-container {
+  display: inline-block;
+  margin-top: 50px;
+  padding: 50px;
+  width: 512px;
+  min-width: 512px;
+  min-height: 100px;
+  overflow: hidden;  
+  opacity: 0.9;
+  background-color: #0B2161;
+  border: 1px solid #0174DF;
+  border-radius: .25rem;
 }
 
 .logo {
@@ -41,8 +57,12 @@ a.logo {
   float: left;
 }
 
-.menu, a {
-  color: #A9E2F3;
+a, a:visited, a:hover, a:active {
+  color: inherit;
   text-decoration: none;
-  margin-right: 10px;
 }
+
+.validation-error {
+  color: red;
+}
+

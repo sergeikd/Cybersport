@@ -5,25 +5,25 @@ import { LoginProvider } from "./infrastructure/loginProvider";
 import { LocalStorageProvider } from "./infrastructure/localStorage.ts";
 import { data } from "./appData/defaultData";
 import { Header } from "./components/header/header";
-import { LoginForm } from "./components/forms/loginForm";
+import LoginForm from "./components/forms/loginForm";
 
 class App extends Component {
   localStorageProvider;
-  loginProvider;
+  // loginProvider;
   constructor() {
     super();
     this.localStorageProvider = new LocalStorageProvider();
-    this.loginProvider = new LoginProvider();
+    // this.loginProvider = new LoginProvider();
   }
   componentDidMount() {
     for (const key in data) {
       this.localStorageProvider.putObject(key, data[key]);
     }
-    if (!this.loginProvider.isLogged()) {
-      this.loginProvider.login("User1");
-    } else {
-      this.loginProvider.logout();
-    }
+    // if (!this.loginProvider.isLogged()) {
+    //   this.loginProvider.login("User1");
+    // } else {
+    //   this.loginProvider.logout();
+    // }
   }
 
   render() {

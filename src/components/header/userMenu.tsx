@@ -4,8 +4,6 @@ import { LoginProvider } from "../../infrastructure/loginProvider";
 
 export const UserMenu: () => JSX.Element | null = () => {
     const loginProvider: LoginProvider = new LoginProvider();
-    console.log(loginProvider.getUser());
-
     if (loginProvider.isLogged()) {
         return (
             <div className="menu-left">

@@ -9,6 +9,12 @@ export class LocalStorageProvider {
         localStorage.setItem(key, JSON.stringify(obj));
     }
 
+    hasUser  = (userName: string): boolean => {
+        const users: IUser[] = JSON.parse(localStorage.getItem("users")!);
+        const user = users.find(x => x.name === userName);
+        return user === undefined;
+    }
+
     getUser = (name: string): IUser | null => {
         const users: IUser[] = JSON.parse(localStorage.getItem("users")!);
         const user = users.find(x => x.name === name);
