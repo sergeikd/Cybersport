@@ -31,7 +31,7 @@ class LoginForm extends React.Component<IProps & RouteComponentProps, ILoginForm
       const inputElement = form[0] as HTMLInputElement;
       const userName = inputElement.value;
       const user = this.localStorageProvider.getUser(userName);
-      if (user) {
+      if (user && user.isActive) {
         this.props.logIn(user);
         this.props.history.push("/");
       }

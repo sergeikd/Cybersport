@@ -2,6 +2,7 @@ export interface IUser {
     id: number;
     name: string;
     roleId: number;
+    isActive: boolean;
 }
 
 export interface IState {
