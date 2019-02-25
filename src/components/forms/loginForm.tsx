@@ -61,33 +61,3 @@ class LoginForm extends React.Component<IProps & RouteComponentProps, ILoginForm
 }
 
 export default connect(null, { logIn })(LoginForm);
-
-  // handleSubmit = () => (event: React.FormEvent<HTMLFormElement>) => {// event: MouseEvent<HTMLButtonElement, MouseEvent>
-  //   const form: HTMLFormElement = event.currentTarget;
-  //   console.log(form.action);
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-  //     this.setState({ validated: false });
-  //   }
-  //   if (form.checkValidity() === true) {
-  //     const inputElement = form[0] as HTMLInputElement;
-  //     const userName: string = inputElement.value;
-  //     console.log(this.loginProvider.isUserExists(userName));
-  //     if (this.loginProvider.isUserExists(userName)) {
-  //       this.loginProvider.login(userName);
-  //       const user: IUser = {
-  //         name: "test",
-  //         id: 1,
-  //         roleId: 1
-  //       };
-  //       this.props.logIn(user);
-  //       // return <Redirect to="/"/>;
-  //       form.action = "/";
-  //     } else {
-  //       event.preventDefault();
-  //       event.stopPropagation();
-  //       this.setState({ validated: false });
-  //     }
-  //   }
-  // }
