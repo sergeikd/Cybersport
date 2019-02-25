@@ -1,10 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { LoginProvider } from "../../infrastructure/loginProvider";
+import { IState, IUser } from "../../common/interfaces";
 
-export const UserMenu: () => JSX.Element | null = () => {
-    const loginProvider: LoginProvider = new LoginProvider();
-    if (loginProvider.isLogged()) {
+const UserMenu = ((props: { user: IUser}): JSX.Element | null => {
+    if (props.user.name) {
         return (
             <div className="menu-left">
                 <Link to="/menu1">Menu1</Link>
@@ -13,4 +13,12 @@ export const UserMenu: () => JSX.Element | null = () => {
         );
     }
     return (null);
+});
+
+const mapStateToProps = (state: IState) => {
+    return {
+        user: state.user,
+    };
 };
+
+export default connect(mapStateToProps)(UserMenu);

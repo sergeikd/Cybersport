@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { logIn } from "../../actions/user";
+import { RouteComponentProps } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { Validation } from "./validation";
-import { LoginProvider } from "../../infrastructure/loginProvider";
-import { ILoginProvider, IUser } from "../../common/interfaces";
-import { RouteComponentProps } from "react-router-dom";
+import { LocalStorageProvider } from "../../infrastructure/localStorage";
+import { IUser, ILocalStorageProvider } from "../../common/interfaces";
 
 interface ILoginFormState {
   validated: boolean;
@@ -16,24 +16,22 @@ interface IProps {
 }
 
 class LoginForm extends React.Component<IProps & RouteComponentProps, ILoginFormState> {
-  loginProvider: ILoginProvider;
+  localStorageProvider: ILocalStorageProvider;
   constructor(props: IProps & RouteComponentProps) {
     super(props);
     this.state = {
       validated: true,
     };
-    this.loginProvider = new LoginProvider();
+    this.localStorageProvider = new LocalStorageProvider();
   }
   handleClick = () => (event: React.MouseEvent<HTMLButtonElement>) => {
     const form: HTMLFormElement = event.currentTarget.form as HTMLFormElement;
 
     if (form.checkValidity() === true) {
       const inputElement = form[0] as HTMLInputElement;
-      const userName: string = inputElement.value;
-
-      if (this.loginProvider.isUserExists(userName)) {
-        this.loginProvider.login(userName);
-        const user: IUser = this.loginProvider.getUser();
+      const userName = inputElement.value;
+      const user = this.localStorageProvider.getUser(userName);
+      if (user) {
         this.props.logIn(user);
         this.props.history.push("/");
       }

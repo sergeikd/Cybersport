@@ -1,14 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { LoginProvider } from "../../infrastructure/loginProvider";
+import { IState } from "../../common/interfaces";
 
-export const UserPanel = (): JSX.Element => {
-    const loginProvider: LoginProvider = new LoginProvider();
-    console.log(loginProvider.getUser());
-    if (loginProvider.isLogged()) {
+const UserPanel = ((props: { user: any }): JSX.Element => {
+    console.log("in user panel", props.user);
+    if (props.user.name) {
         return (
-            <div className="menu-right">{loginProvider.getUser().name}
-                ({loginProvider.getUser().roleId}) |&nbsp;
+            <div className="menu-right">{props.user.name}
+                ({props.user.roleId}) |&nbsp;
                     {/* &nbsp;| */}
                 <Link to="/logout">Выход</Link>
             </div>
@@ -20,4 +20,12 @@ export const UserPanel = (): JSX.Element => {
             {/* <Link to="/signin">Регистрация</Link> */}
         </div>
     );
+});
+
+const mapStateToProps = (state: IState) => {
+    return {
+        user: state.user,
+    };
 };
+
+export default connect(mapStateToProps)(UserPanel);

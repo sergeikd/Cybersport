@@ -9,15 +9,13 @@ export class LocalStorageProvider {
         localStorage.setItem(key, JSON.stringify(obj));
     }
 
-    hasUser  = (userName: string): boolean => {
+    getUser = (name: string): IUser | undefined => {
         const users: IUser[] = JSON.parse(localStorage.getItem("users")!);
-        const user = users.find(x => x.name === userName);
-        return user === undefined;
+        return users.find(x => x.name === name);
     }
 
-    getUser = (name: string): IUser | null => {
+    hasUser = (name: string): boolean => {
         const users: IUser[] = JSON.parse(localStorage.getItem("users")!);
-        const user = users.find(x => x.name === name);
-        return user === undefined ? null : user;
+        return users.find(x => x.name === name) === undefined;
     }
 }

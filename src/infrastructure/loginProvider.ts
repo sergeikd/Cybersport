@@ -10,35 +10,35 @@ import { IUser, ILocalStorageProvider, ILoginProvider } from "../common/interfac
 //     logout: () => void;
 // }
 
-export class LoginProvider implements ILoginProvider {
-    private cookies: Cookies;
-    private localStorageProvider: ILocalStorageProvider;
-    constructor() {
-        this.localStorageProvider = new LocalStorageProvider();
-        this.cookies = new Cookies();
-    }
+// export class LoginProvider implements ILoginProvider {
+//     private cookies: Cookies;
+//     private localStorageProvider: ILocalStorageProvider;
+//     constructor() {
+//         this.localStorageProvider = new LocalStorageProvider();
+//         this.cookies = new Cookies();
+//     }
 
-    getUser = (): IUser => {
-        return this.cookies.get("user");
-    }
+//     getUser = (): IUser => {
+//         return this.cookies.get("user");
+//     }
 
-    isLogged = (): boolean => {
-        return this.getUser() !== undefined;
-    }
+//     isLogged = (): boolean => {
+//         return this.getUser() !== undefined;
+//     }
 
-    logout = (): void => {
-        this.cookies.remove("user");
-    }
+//     logout = (): void => {
+//         this.cookies.remove("user");
+//     }
 
-    login = (name: string): void => {
-        const user: IUser = this.localStorageProvider.getUser(name) as IUser;
-        if (user) {
-            this.cookies.set("user", user);
-        }
-    }
+//     login = (name: string): void => {
+//         const user: IUser = this.localStorageProvider.getUser(name) as IUser;
+//         if (user) {
+//             this.cookies.set("user", user);
+//         }
+//     }
 
-    isUserExists = (name: string): boolean => {
-        const user: IUser = this.localStorageProvider.getUser(name) as IUser;
-        return !!user;
-    }
-}
+//     isUserExists = (name: string): boolean => {
+//         const user: IUser = this.localStorageProvider.getUser(name) as IUser;
+//         return !!user;
+//     }
+// }

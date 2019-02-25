@@ -5,19 +5,14 @@ export interface IUser {
 }
 
 export interface IState {
-    [key: string]: any;
+    user: IUser;
 }
-
-// export interface IAction {
-//     type: string;
-//     payload: any;
-//     [key: string]: any;
-// }
 
 export interface ILocalStorageProvider {
     hasObject: (key: string) => boolean;
     putObject: (key: string, obj: object) => void;
-    getUser: (name: string) => IUser | null;
+    getUser: (name: string) => IUser | undefined;
+    hasUser: (key: string) => boolean;
 }
 
 export interface ILoginProvider {
