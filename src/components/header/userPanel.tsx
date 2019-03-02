@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { IState } from "../../common/interfaces";
 
 const UserPanel = ((props: { user: any }): JSX.Element => {
-    console.log("in user panel", props.user);
     if (props.user.name) {
         return (
             <div className="menu-right">{props.user.name}
@@ -17,14 +16,13 @@ const UserPanel = ((props: { user: any }): JSX.Element => {
     return (
         <div className="menu-right">
             <Link to="/login">Вход</Link>
-            {/* <Link to="/signin">Регистрация</Link> */}
         </div>
     );
 });
 
 const mapStateToProps = (state: IState) => {
     return {
-        user: state.user,
+        user: state.users.loggedUser,
     };
 };
 

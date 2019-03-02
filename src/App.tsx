@@ -1,29 +1,49 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 import "./App.css";
-import { LocalStorageProvider } from "./infrastructure/localStorage.ts";
+import { LocalStorageProvider } from "./infrastructure/localStorage";
 import { data } from "./appData/defaultData";
+import { ILocalStorageProvider, IUser } from "./common/interfaces";
 import { Header } from "./components/header/header";
 import LoginForm from "./components/forms/loginForm";
 import Logout from "./components/logout";
 import Users from "./components/pages/users";
 import { Page404 } from "./components/pages/404";
 import { Page403 } from "./components/pages/403";
+import { logIn } from "./actions/user";
 
-class App extends Component {
-  localStorageProvider;
-  constructor() {
-    super();
+interface IData {
+  [key: string]: any;
+}
+
+interface IProps {
+  logIn: (user: IUser) => void;
+}
+
+class App extends Component<IProps> {
+  localStorageProvider: ILocalStorageProvider;
+  constructor(props: IProps) {
+    super(props);
     this.localStorageProvider = new LocalStorageProvider();
   }
-  
-  componentDidMount() {
-    for (const key in data) {
-      this.localStorageProvider.putObject(key, data[key]);
+
+  componentDidMount(): void {
+    const initData: IData = { ...data };
+    for (const key in data as IData) {
+      this.localStorageProvider.putObject(key, initData[key]);
     }
+
+    const admin: IUser = {
+      id: 0,
+      name: "aaa", // admin
+      roleId: 0,
+      isActive: true,
+    };
+    this.props.logIn(admin);
   }
 
-  render() {
+  render(): React.ReactNode {
     return (
       <Router>
         <>
@@ -42,7 +62,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { logIn })(App);
 
 const Home = () => (
   <div>

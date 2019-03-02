@@ -22,7 +22,7 @@ const UserMenu = ((props: { user: IUser }): JSX.Element | null => {
 
 const mapStateToProps = (state: IState) => {
     return {
-        user: state.user,
+        user: state.users.loggedUser,
     };
 };
 

@@ -6,7 +6,10 @@ export interface IUser {
 }
 
 export interface IState {
-    user: IUser;
+    users: {
+        loggedUser: IUser,
+        userList: IUser[]
+    };
 }
 
 export interface ILocalStorageProvider {
@@ -14,12 +17,6 @@ export interface ILocalStorageProvider {
     putObject: (key: string, obj: object) => void;
     getUser: (name: string) => IUser | undefined;
     hasUser: (key: string) => boolean;
-}
-
-export interface ILoginProvider {
-    getUser: () => IUser;
-    isLogged: () => boolean;
-    logout: () => void;
-    login: (name: string) => void;
-    isUserExists: (name: string) => boolean;
+    saveUsers: (users: IUser[]) => void;
+    get<T> (instance: string): T;
 }

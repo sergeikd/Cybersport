@@ -13,3 +13,16 @@ export const logOut = () => {
         type: actionTypes.LOG_OUT,
     };
 };
+
+export const getUsers = () => {
+    return {
+        type: actionTypes.GET_USERS,
+    };
+};
+
+export const updateUserStatus = (id: number) => {
+    return {
+        type: actionTypes.CHANGE_USER_ACTIVE,
+        id,
+    };
+};
