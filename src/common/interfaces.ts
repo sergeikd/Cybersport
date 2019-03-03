@@ -5,10 +5,16 @@ export interface IUser {
     isActive: boolean;
 }
 
+export interface IRole {
+    id: number;
+    role: string;
+}
+
 export interface IState {
     users: {
         loggedUser: IUser,
-        userList: IUser[]
+        userList: IUser[],
+        roles: IRole[],
     };
 }
 

@@ -48,6 +48,11 @@ input {
   cursor: pointer;
 }
 
+select {
+  background-color: #0B2161!important;
+  color: #A9E2F3!important;
+}
+
 .logo {
   padding: 0;
   float: left;
