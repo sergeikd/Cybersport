@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { IState } from "../../common/interfaces";
+import { IUserState } from "../../common/interfaces";
 
 const UserPanel = ((props: { user: any }): JSX.Element => {
     if (props.user.name) {
@@ -20,7 +20,7 @@ const UserPanel = ((props: { user: any }): JSX.Element => {
     );
 });
 
-const mapStateToProps = (state: IState) => {
+const mapStateToProps = (state: IUserState) => {
     return {
         user: state.users.loggedUser,
     };

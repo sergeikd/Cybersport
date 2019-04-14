@@ -9,9 +9,10 @@ import { Header } from "./components/header/header";
 import LoginForm from "./components/forms/loginForm";
 import Logout from "./components/logout";
 import Users from "./components/pages/users";
+import Game from "./components/pages/game";
 import { Page404 } from "./components/pages/404";
 import { Page403 } from "./components/pages/403";
-import { logIn } from "./actions/user";
+import { logIn } from "./actions/userAction";
 
 interface IData {
   [key: string]: any;
@@ -53,6 +54,7 @@ class App extends Component<IProps> {
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
             <Route path="/users" component={Users} />
+            <Route path="/game" component={Game} />
             <Route path="/403" component={Page403} />
             <Route component={Page404} />
           </Switch>

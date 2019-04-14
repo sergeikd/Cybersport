@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { IState, IUser } from "../../common/interfaces";
+import { IUserState, IUser } from "../../common/interfaces";
 
 const UserMenu = ((props: { user: IUser }): JSX.Element | null => {
     switch (props.user.roleId) {
@@ -20,7 +20,7 @@ const UserMenu = ((props: { user: IUser }): JSX.Element | null => {
     }
 });
 
-const mapStateToProps = (state: IState) => {
+const mapStateToProps = (state: IUserState) => {
     return {
         user: state.users.loggedUser,
     };

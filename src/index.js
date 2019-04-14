@@ -5,10 +5,11 @@ import { combineReducers, createStore, compose } from "redux";
 import App from "./App";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import { users } from "./reducers/user";
+import { users } from "./reducers/userReducer";
+import { news } from "./reducers/newsReducer";
 
 const reducers = combineReducers({
-    users,
+    users, news
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers());

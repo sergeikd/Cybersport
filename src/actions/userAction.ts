@@ -1,4 +1,4 @@
-import { IUser, IRole } from "../common/interfaces";
+import { IUser } from "../common/interfaces";
 import * as actionTypes from "../common/action-types";
 
 export const logIn = (user: IUser) => {

@@ -18,6 +18,33 @@ export interface IState {
     };
 }
 
+export interface INews {
+    id: number;
+    text: string;
+    pictureUrl: string;
+    gameId:  number;
+    authorId:  number;
+}
+
+export interface IUserState {
+    users: {
+        loggedUser: IUser,
+        userList: IUser[],
+        roles: IRole[],
+    };
+}
+
+
+export interface INewsState {
+    newsList: INews[];
+}
+
+export interface IAction {
+    type: string;
+    payload: any;
+    [key: string]: any;
+}
+
 export interface ILocalStorageProvider {
     hasObject: (key: string) => boolean;
     putObject: (key: string, obj: object) => void;

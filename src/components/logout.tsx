@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { logOut } from "../actions/user";
+import { logOut } from "../actions/userAction";
 import { RouteComponentProps } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 

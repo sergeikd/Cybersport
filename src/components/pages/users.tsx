@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUsers, getRoles,updateUserStatus, updateUserRole } from "../../actions/user";
+import { getUsers, getRoles,updateUserStatus, updateUserRole } from "../../actions/userAction";
 import { RouteComponentProps } from "react-router-dom";
 import { Table, Form, Button } from "react-bootstrap";
 import { LocalStorageProvider } from "../../infrastructure/localStorage";
-import { IUser, IRole, IState, ILocalStorageProvider } from "../../common/interfaces";
+import { IUser, IRole, IUserState, ILocalStorageProvider } from "../../common/interfaces";
 
 interface IProps {
     getUsers: () => void;
@@ -16,10 +16,10 @@ interface IProps {
     roles: IRole[];
 }
 
-interface IUsersState {
+interface IState {
     wasChanged: boolean;
 }
-class Users extends React.Component<IProps & RouteComponentProps, IUsersState> {
+class Users extends React.Component<IProps & RouteComponentProps, IState> {
     localStorageProvider: ILocalStorageProvider;
     constructor(props: IProps & RouteComponentProps) {
         super(props);
@@ -113,7 +113,7 @@ class Users extends React.Component<IProps & RouteComponentProps, IUsersState> {
     }
 }
 
-const mapStateToProps = (state: IState) => {
+const mapStateToProps = (state: IUserState) => {
     return {
         user: state.users.loggedUser,
         users: state.users.userList,

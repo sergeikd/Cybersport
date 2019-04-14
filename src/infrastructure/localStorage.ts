@@ -1,4 +1,4 @@
-import { IUser, IState } from "../common/interfaces";
+import { IUser, IUserState } from "../common/interfaces";
 
 export class LocalStorageProvider {
     hasObject = (key: string): boolean => {
