@@ -14,35 +14,24 @@ export const users = (state = initialState, action: any) => {
     return produce(state, draft => {
         switch (action.type) {
             case actionTypes.LOG_IN:
-                return { ...state, loggedUser: action.user };
+                draft.loggedUser = action.user;
+                return draft;
             case actionTypes.LOG_OUT:
-                return { ...initialState };
+                draft = {...initialState};
+                return draft;
             case actionTypes.GET_USERS:
-                return { ...state, userList: localStorageProvider.get<IUser[]>("users") };
+                draft.userList = localStorageProvider.get<IUser[]>("users");
+                return draft;
             case actionTypes.GET_ROLES:
-                return { ...state, roles: localStorageProvider.get<IRole[]>("roles") };
+                draft.roles = localStorageProvider.get<IRole[]>("roles");
+                return draft;
             case actionTypes.CHANGE_USER_ACTIVE:
-                const usersForChangeStatus: IUser[] = state.userList.map(user => {
-                    if (user.id === action.id) {
-                        const updatedUser: IUser = { ...user, isActive: !user.isActive };
-                        return { ...user, ...updatedUser };
-                    } else {
-                        return user;
-                    }
-                });
-                return { ...state, userList: usersForChangeStatus };
+                const currentStatus = draft.userList[draft.userList.findIndex(user => user.id === action.id)].isActive;
+                draft.userList[draft.userList.findIndex(user => user.id === action.id)].isActive = !currentStatus;
+                return draft;
             case actionTypes.CHANGE_USER_ROLE:
-                const usersForChangeRole: IUser[] = state.userList.map(user => {
-                    if (user.id === action.user.id) {
-                        const updatedUser: IUser = { ...user, roleId: action.user.roleId };
-                        return { ...user, ...updatedUser };
-                    } else {
-                        return user;
-                    }
-                });
-                return { ...state, userList: usersForChangeRole };
-            default:
-                return state;
+                draft.userList[draft.userList.findIndex(user => user.id === action.user.id)].roleId = action.user.roleId;
+                return draft;
         }
     });
 };
