@@ -74,5 +74,27 @@ export const data = {
             id: 2,
             role: "manager",
         },
+    ],
+    games: [
+        {
+            id: 0,
+            name: "Game0",
+            backgroundImageId: 0,
+        },
+        {
+            id: 1,
+            name: "Game1",
+            backgroundImageId: 1,
+        },
+        {
+            id: 2,
+            name: "Game2",
+            backgroundImageId: 2,
+        },
+        {
+            id: 3,
+            name: "Game3",
+            backgroundImageId: 3,
+        },
     ]
 };

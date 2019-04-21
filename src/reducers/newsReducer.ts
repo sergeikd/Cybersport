@@ -16,8 +16,6 @@ export const news = (state = initialState, action: IAction) => {
           case actionTypes.GET_NEWS:
               draft.newsList = localStorageProvider.get<INews[]>("news");
               return draft;
-          default:
-              return draft;
       }
   });
 };

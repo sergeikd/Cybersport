@@ -10,6 +10,12 @@ export interface IRole {
     role: string;
 }
 
+export interface IGame {
+    id: number;
+    name: string,
+    backgroundImageId: number,
+}
+
 export interface IState {
     users: {
         loggedUser: IUser,
@@ -34,6 +40,14 @@ export interface IUserState {
     };
 }
 
+export interface IGamesState {
+    games: {
+        gamesList: IGame[],
+    };
+    users: {
+        loggedUser: IUser,
+    };
+}
 
 export interface INewsState {
     newsList: INews[];

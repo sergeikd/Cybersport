@@ -85,6 +85,12 @@ a, a:visited, a:hover, a:active {
   color: red;
 }
 
+.menu-separator {
+  display: inline-block;
+  color: #A9E2F3!important;
+  margin: 0 10px;
+}
+
 #notfound {
   position: relative;
   height: calc(100vh - 100px);

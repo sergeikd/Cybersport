@@ -5,3 +5,5 @@ export const GET_ROLES = "GET_ROLES";
 export const CHANGE_USER_ACTIVE = "CHANGE_USER_ACTIVE";
 export const CHANGE_USER_ROLE = "CHANGE_USER_ROLE";
 export const GET_NEWS ="GET_NEWS";
+export const GET_GAMES ="GET_GAMES";
+export const EDIT_GAME ="EDIT_GAME";

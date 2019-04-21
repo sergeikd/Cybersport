@@ -7,8 +7,8 @@ const UserPanel = ((props: { user: any }): JSX.Element => {
     if (props.user.name) {
         return (
             <div className="menu-right">{props.user.name}
-                ({props.user.roleId}) |&nbsp;
-                    {/* &nbsp;| */}
+                ({props.user.roleId})
+                <p className="menu-separator">|</p>
                 <Link to="/logout">Выход</Link>
             </div>
         );

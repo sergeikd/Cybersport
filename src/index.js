@@ -7,9 +7,10 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { users } from "./reducers/userReducer";
 import { news } from "./reducers/newsReducer";
+import { games } from "./reducers/gamesReducer";
 
 const reducers = combineReducers({
-    users, news
+    users, news, games
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers());

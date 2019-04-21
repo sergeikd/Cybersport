@@ -6,7 +6,7 @@ import { Table, Form, Button } from "react-bootstrap";
 import { LocalStorageProvider } from "../../infrastructure/localStorage";
 import { IUser, IRole, IUserState, ILocalStorageProvider } from "../../common/interfaces";
 
-interface IProps {
+interface IUsersProps {
     getUsers: () => void;
     getRoles: () => void;
     updateUserStatus: (userId: number) => void;
@@ -16,12 +16,12 @@ interface IProps {
     roles: IRole[];
 }
 
-interface IState {
+interface IUsersState {
     wasChanged: boolean;
 }
-class Users extends React.Component<IProps & RouteComponentProps, IState> {
+class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersState> {
     localStorageProvider: ILocalStorageProvider;
-    constructor(props: IProps & RouteComponentProps) {
+    constructor(props: IUsersProps & RouteComponentProps) {
         super(props);
         this.state = {
             wasChanged: false,
@@ -44,7 +44,8 @@ class Users extends React.Component<IProps & RouteComponentProps, IState> {
         this.props.updateUserStatus(userId);
     }
 
-    handleChangeRole = () => (e: React.FormEvent<HTMLSelectElement & any>) => {
+    handleChangeRole = () => (e: React.FormEvent<HTMLSelectElement> & React.FormEvent<HTMLOptionsCollection>) => {
+        console.log(e.currentTarget);
         console.log(e.currentTarget.value);
         console.log(e.currentTarget.id);
         const updatedUser: Partial<IUser> =  {
@@ -55,7 +56,6 @@ class Users extends React.Component<IProps & RouteComponentProps, IState> {
         this.setState({
             wasChanged: true
         });
-        // this.props.updateUserStatus(userId);
     }
 
     handleSaveClick = () => () => {
@@ -64,7 +64,6 @@ class Users extends React.Component<IProps & RouteComponentProps, IState> {
 
     render(): React.ReactNode {
         if (this.props.users instanceof Array) {
-            const userRole: IRole = this.props.roles.filter(x => x.id === this.props.user.roleId)[0];
             return (
                 <div className="page-container">
                     <br />
