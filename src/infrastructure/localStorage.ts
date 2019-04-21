@@ -1,6 +1,6 @@
-import { IUser, IUserState } from "../common/interfaces";
+import { IUser, ILocalStorageProvider } from "../common/interfaces";
 
-export class LocalStorageProvider {
+export class LocalStorageProvider implements ILocalStorageProvider {
     hasObject = (key: string): boolean => {
         return localStorage.getItem(key) !== null;
     }
@@ -13,11 +13,6 @@ export class LocalStorageProvider {
         const users: IUser[] = this.get<IUser[]>("users");
         return users.find(x => x.name === name);
     }
-
-    // getUsers = (): IUser[] => {
-    //     const users: IUser[] = JSON.parse(localStorage.getItem("users")!);
-    //     return users;
-    // }
 
     get<T> (instance: string): T {
         return JSON.parse(localStorage.getItem(instance)!);

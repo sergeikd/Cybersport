@@ -26,8 +26,8 @@ export const users = (state = initialState, action: any) => {
                 draft.roles = localStorageProvider.get<IRole[]>("roles");
                 return draft;
             case actionTypes.CHANGE_USER_ACTIVE:
-                const currentStatus = draft.userList[draft.userList.findIndex(user => user.id === action.id)].isActive;
-                draft.userList[draft.userList.findIndex(user => user.id === action.id)].isActive = !currentStatus;
+                const index =  draft.userList.findIndex(user => user.id === action.id);
+                draft.userList[index].isActive = !draft.userList[index].isActive;
                 return draft;
             case actionTypes.CHANGE_USER_ROLE:
                 draft.userList[draft.userList.findIndex(user => user.id === action.user.id)].roleId = action.user.roleId;
