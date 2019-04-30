@@ -189,3 +189,16 @@ a, a:visited, a:hover, a:active {
 .margin-bottom-10 {
   margin-bottom: 10px;
 }
+
+.game-image-preview {
+  max-width: 200px;
+}
+
+.vertical-align {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}

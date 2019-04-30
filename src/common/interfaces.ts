@@ -12,8 +12,8 @@ export interface IRole {
 
 export interface IGame {
     id: number;
-    name: string,
-    backgroundImageId: number,
+    name: string;
+    backgroundImage: string;
 }
 
 export interface IState {

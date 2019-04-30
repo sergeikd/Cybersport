@@ -4,7 +4,7 @@ import { getGames } from "../../actions/gamesAction";
 import { RouteComponentProps, Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import { LocalStorageProvider } from "../../infrastructure/localStorage";
-import { IUser, IGamesState, ILocalStorageProvider, IGame } from '../../common/interfaces';
+import { IUser, IGamesState, ILocalStorageProvider, IGame } from "../../common/interfaces";
 
 interface IGamesProps {
     getGames: () => void;
@@ -19,17 +19,11 @@ class Games extends React.Component<IGamesProps & RouteComponentProps, {}> {
         this.localStorageProvider = new LocalStorageProvider();
     }
 
-    componentDidMount() {
+    componentDidMount():void {
         if (this.props.user.roleId !== 0) {
             this.props.history.push("/403");
         }
         this.props.getGames();
-    }
-
-    handleEditClick = (gameId: number) => () => {
-        this.setState({
-            wasChanged: true
-        });
     }
 
     render(): React.ReactNode {
@@ -52,7 +46,7 @@ class Games extends React.Component<IGamesProps & RouteComponentProps, {}> {
                                     <tr key={game.id}>
                                         <td>{game.id}</td>
                                         <td>{game.name}</td>
-                                        <td>{game.backgroundImageId}</td>
+                                        <td><img className="game-image-preview"src={game.backgroundImage}/></td>
                                         <td>
                                             <Link to={path}>Изменить</Link>
                                         </td>
