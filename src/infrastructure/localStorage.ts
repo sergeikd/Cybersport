@@ -21,13 +21,8 @@ export class LocalStorageProvider implements ILocalStorageProvider {
         return JSON.parse(localStorage.getItem(instance)!);
     }
 
-    public hasUser = (name: string): boolean => {
-        const users: IUser[] = JSON.parse(localStorage.getItem("users")!);
-        return users.find(x => x.name === name) === undefined;
-    }
-
-    public saveUsers = (users: IUser[]) => {
-        this.putObject("users", users);
+    public save<T> (key: string, payload: T): void {
+        localStorage.setItem(key, JSON.stringify(payload));
     }
 
     public getGames = () => {

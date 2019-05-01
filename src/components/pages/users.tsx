@@ -59,7 +59,7 @@ class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersSta
     }
 
     handleSaveClick = () => () => {
-        this.localStorageProvider.saveUsers(this.props.users);
+        this.localStorageProvider.save<IUser[]>("users", this.props.users);
     }
 
     render(): React.ReactNode {

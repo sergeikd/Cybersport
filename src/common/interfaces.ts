@@ -63,8 +63,7 @@ export interface ILocalStorageProvider {
     hasObject: (key: string) => boolean;
     putObject: (key: string, obj: object) => void;
     getUser: (name: string) => Promise<IUser>;
-    hasUser: (key: string) => boolean;
-    saveUsers: (users: IUser[]) => void;
+    save<T>(key: string, payload: T): void;
     get<T> (instance: string): T;
     getGames: () => Promise<IGame[]>;
 }
