@@ -1,6 +1,7 @@
-import { IUser, ILocalStorageProvider } from "../common/interfaces";
+import { IUser, IGame, ILocalStorageProvider } from "../common/interfaces";
 
 export class LocalStorageProvider implements ILocalStorageProvider {
+
     public hasObject = (key: string): boolean => {
         return localStorage.getItem(key) !== null;
     }
@@ -25,5 +26,11 @@ export class LocalStorageProvider implements ILocalStorageProvider {
 
     public saveUsers = (users: IUser[]) => {
         this.putObject("users", users);
+    }
+
+    public getGames = () => {
+        return new Promise<IGame[]>((resolve) => {
+            return resolve(JSON.parse(localStorage.getItem("games")!));
+        });
     }
 }
