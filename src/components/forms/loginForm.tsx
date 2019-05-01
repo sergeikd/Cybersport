@@ -24,13 +24,13 @@ class LoginForm extends React.Component<IProps & RouteComponentProps, ILoginForm
     };
     this.localStorageProvider = new LocalStorageProvider();
   }
-  handleClick = () => (event: React.MouseEvent<HTMLButtonElement>) => {
+  handleClick = () => async (event: React.MouseEvent<HTMLButtonElement>) => {
     const form: HTMLFormElement = event.currentTarget.form as HTMLFormElement;
 
     if (form.checkValidity() === true) {
       const inputElement = form[0] as HTMLInputElement;
       const userName = inputElement.value;
-      const user = this.localStorageProvider.getUser(userName);
+      const user = await this.localStorageProvider.getUser(userName);
       if (user && user.isActive) {
         this.props.logIn(user);
         this.props.history.push("/");

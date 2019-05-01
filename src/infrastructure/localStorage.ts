@@ -10,9 +10,11 @@ export class LocalStorageProvider implements ILocalStorageProvider {
         localStorage.setItem(key, JSON.stringify(obj));
     }
 
-    public getUser = (name: string): IUser | undefined => {
+    public getUser = (name: string): Promise<IUser> => {
         const users: IUser[] = this.get<IUser[]>("users");
-        return users.find(x => x.name === name);
+        return new Promise<IUser>((resolve) => {
+            return resolve(users.find(x => x.name === name));
+        });
     }
 
     public get<T> (instance: string): T {
