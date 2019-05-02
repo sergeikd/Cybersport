@@ -62,7 +62,7 @@ export interface IAction {
 export interface ILocalStorageProvider {
     hasObject: (key: string) => boolean;
     save<T>(key: string, payload: T): void;
-    get<T> (instance: string): T;
+    get<T> (instance: string): Promise<T>;
     getSingle<T>(instance: string, property: keyof T, value: string): Promise<T>;
     getGames: () => Promise<IGame[]>;
 }

@@ -6,17 +6,21 @@ export class LocalStorageProvider implements ILocalStorageProvider {
         return localStorage.getItem(key) !== null;
     }
 
+    public get<T>(instance: string): Promise<T> {
+        return new Promise<T>((resolve) => {
+            return resolve(JSON.parse(localStorage.getItem(instance)!));
+        });
+        // return JSON.parse(localStorage.getItem(instance)!);
+    }
+
     public getSingle<T>(instance: string, property: keyof T, value: string): Promise<T> {
-        const items: T[] = this.get<T[]>(instance);
+        const items: T[] = JSON.parse(localStorage.getItem(instance)!);
         const item: T = items.find(x => x[property].toString() === value)!;
         return new Promise<T>((resolve) => {
             return resolve(item);
         });
     }
 
-    public get<T>(instance: string): T {
-        return JSON.parse(localStorage.getItem(instance)!);
-    }
 
     public save<T>(key: string, payload: T): void {
         localStorage.setItem(key, JSON.stringify(payload));
