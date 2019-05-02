@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { getGames } from "../../actions/gamesAction";
 import { RouteComponentProps, Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
-import { LocalStorageProvider } from "../../infrastructure/localStorage";
-import { IUser, IGamesState, ILocalStorageProvider, IGame } from "../../common/interfaces";
+import { IUser, IGamesState, IGame } from "../../common/interfaces";
 
 interface IGamesProps {
     getGames: () => void;
@@ -13,10 +12,8 @@ interface IGamesProps {
 }
 
 class Games extends React.Component<IGamesProps & RouteComponentProps, {}> {
-    localStorageProvider: ILocalStorageProvider;
     constructor(props: IGamesProps & RouteComponentProps) {
         super(props);
-        this.localStorageProvider = new LocalStorageProvider();
     }
 
     componentDidMount():void {

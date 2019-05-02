@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
-import { LocalStorageProvider } from "./infrastructure/localStorage";
+import { ApiProvider } from "./infrastructure/fakeApi";
 import { data } from "./appData/defaultData";
-import { ILocalStorageProvider, IUser } from "./common/interfaces";
+import { IApiProvider, IUser } from "./common/interfaces";
 import { Header } from "./components/header/header";
 import LoginForm from "./components/forms/loginForm";
 import Logout from "./components/logout";
@@ -24,16 +24,16 @@ interface IProps {
 }
 
 class App extends Component<IProps> {
-  localStorageProvider: ILocalStorageProvider;
+  apiProvider: IApiProvider;
   constructor(props: IProps) {
     super(props);
-    this.localStorageProvider = new LocalStorageProvider();
+    this.apiProvider = new ApiProvider();
   }
 
   componentDidMount(): void {
     const initData: IData = { ...data };
     for (const key in data as IData) {
-      this.localStorageProvider.save(key, initData[key]);
+      this.apiProvider.save(key, initData[key]);
     }
 
     const admin: IUser = {

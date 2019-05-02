@@ -5,8 +5,8 @@ import { Form, Button } from "react-bootstrap";
 import { Validation } from "./validation";
 import { logIn } from "../../actions/userAction";
 import * as instances from "../../common/instances";
-import { LocalStorageProvider } from "../../infrastructure/localStorage";
-import { IUser, ILocalStorageProvider } from "../../common/interfaces";
+import { ApiProvider } from "../../infrastructure/fakeApi";
+import { IUser, IApiProvider } from "../../common/interfaces";
 
 interface ILoginFormState {
   validated: boolean;
@@ -17,14 +17,15 @@ interface IProps {
 }
 
 class LoginForm extends React.Component<IProps & RouteComponentProps, ILoginFormState> {
-  localStorageProvider: ILocalStorageProvider;
+  apiProvider: IApiProvider;
   constructor(props: IProps & RouteComponentProps) {
     super(props);
     this.state = {
       validated: true,
     };
-    this.localStorageProvider = new LocalStorageProvider();
+    this.apiProvider = new ApiProvider();
   }
+
   handleClick = () => async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.persist();
     const form: HTMLFormElement = event.currentTarget.form as HTMLFormElement;
@@ -32,7 +33,7 @@ class LoginForm extends React.Component<IProps & RouteComponentProps, ILoginForm
     if (form.checkValidity() === true) {
       const inputElement = form[0] as HTMLInputElement;
       const userName = inputElement.value;
-      const user = await this.localStorageProvider.getSingle<IUser>(instances.USERS, "name", userName);
+      const user = await this.apiProvider.getSingle<IUser>(instances.USERS, "name", userName);
       if (user && user.isActive) {
         this.props.logIn(user);
         this.props.history.push("/");

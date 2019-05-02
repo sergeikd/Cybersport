@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { getUsers, getRoles,updateUserStatus, updateUserRole } from "../../actions/userAction";
 import { RouteComponentProps } from "react-router-dom";
 import { Table, Form, Button } from "react-bootstrap";
-import { LocalStorageProvider } from "../../infrastructure/localStorage";
-import { IUser, IRole, IUserState, ILocalStorageProvider } from "../../common/interfaces";
+import { ApiProvider } from "../../infrastructure/fakeApi";
+import { IUser, IRole, IUserState, IApiProvider } from "../../common/interfaces";
 import * as instances from "../../common/instances";
 
 interface IUsersProps {
@@ -21,13 +21,13 @@ interface IUsersState {
     wasChanged: boolean;
 }
 class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersState> {
-    localStorageProvider: ILocalStorageProvider;
+    apiProvider: IApiProvider;
     constructor(props: IUsersProps & RouteComponentProps) {
         super(props);
         this.state = {
             wasChanged: false,
         };
-        this.localStorageProvider = new LocalStorageProvider();
+        this.apiProvider = new ApiProvider();
     }
 
     componentDidMount() {
@@ -60,11 +60,11 @@ class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersSta
     }
 
     handleSaveClick = () => () => {
-        this.localStorageProvider.save<IUser[]>(instances.USERS, this.props.users);
+        this.apiProvider.save<IUser[]>(instances.USERS, this.props.users);
     }
 
     render(): React.ReactNode {
-        if (this.props.users instanceof Array) {
+        if (this.props.users instanceof Array && this.props.roles instanceof Array) {
             return (
                 <div className="page-container">
                     <br />

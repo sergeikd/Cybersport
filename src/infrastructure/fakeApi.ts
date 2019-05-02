@@ -1,0 +1,22 @@
+import { IApiProvider } from "../common/interfaces";
+
+export class ApiProvider implements IApiProvider {
+
+    public get<T>(instance: string): Promise<T> {
+        return new Promise<T>((resolve) => {
+            return resolve(JSON.parse(localStorage.getItem(instance)!));
+        });
+    }
+
+    public getSingle<T>(instance: string, property: keyof T, value: string): Promise<T> {
+        const items: T[] = JSON.parse(localStorage.getItem(instance)!);
+        const item: T = items.find(x => x[property].toString() === value)!;
+        return new Promise<T>((resolve) => {
+            return resolve(item);
+        });
+    }
+
+    public save<T>(key: string, payload: T): void {
+        localStorage.setItem(key, JSON.stringify(payload));
+    }
+}

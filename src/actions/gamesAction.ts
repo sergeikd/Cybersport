@@ -1,9 +1,10 @@
 import { Dispatch } from "redux";
 import * as actionTypes from "../common/action-types";
 import { IGame } from "../common/interfaces";
-import { LocalStorageProvider } from "../infrastructure/localStorage";
+import { ApiProvider } from "../infrastructure/fakeApi";
+import * as instances from "../common/instances";
 
-const localStorageProvider = new LocalStorageProvider();
+const apiProvider = new ApiProvider();
 
 const fetchGames = (gamesList: IGame[]) => {
     return {
@@ -13,7 +14,7 @@ const fetchGames = (gamesList: IGame[]) => {
 };
 
 export const getGames = () => (dispatch: Dispatch) => {
-    localStorageProvider.getGames()
+    apiProvider.get<IGame[]>(instances.GAMES)
         .then((gamesList) => {
             dispatch(fetchGames(gamesList));
         });

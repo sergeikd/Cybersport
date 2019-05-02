@@ -2,10 +2,9 @@ import { Dispatch } from "redux";
 import { IUser, IRole } from "../common/interfaces";
 import * as actionTypes from "../common/action-types";
 import * as instances from "../common/instances";
-import { LocalStorageProvider } from "../infrastructure/localStorage";
-import { ROLES } from '../common/instances';
+import { ApiProvider } from "../infrastructure/fakeApi";
 
-const localStorageProvider = new LocalStorageProvider();
+const apiProvider = new ApiProvider();
 
 export const logIn = (user: IUser) => {
     return {
@@ -51,14 +50,14 @@ export const updateUserRole = (user: Partial<IUser>) => {
 };
 
 export const getUsers = () => (dispatch: Dispatch) => {
-    localStorageProvider.get<IUser[]>(instances.USERS)
+    apiProvider.get<IUser[]>(instances.USERS)
         .then((userList) => {
             dispatch(fetchUsers(userList));
         });
 };
 
 export const getRoles = () => (dispatch: Dispatch) => {
-    localStorageProvider.get<IRole[]>(instances.ROLES)
+    apiProvider.get<IRole[]>(instances.ROLES)
         .then((roles) => {
             dispatch(fetchRoles(roles));
         });
