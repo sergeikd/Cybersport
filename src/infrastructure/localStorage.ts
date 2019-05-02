@@ -1,27 +1,24 @@
 import { IUser, IGame, ILocalStorageProvider } from "../common/interfaces";
-
+import * as instances from "../common/instances";
 export class LocalStorageProvider implements ILocalStorageProvider {
 
     public hasObject = (key: string): boolean => {
         return localStorage.getItem(key) !== null;
     }
 
-    public putObject = (key: string, obj: object): void => {
-        localStorage.setItem(key, JSON.stringify(obj));
-    }
-
-    public getUser = (name: string): Promise<IUser> => {
-        const users: IUser[] = this.get<IUser[]>("users");
-        return new Promise<IUser>((resolve) => {
-            return resolve(users.find(x => x.name === name));
+    public getSingle<T>(instance: string, property: keyof T, value: string): Promise<T> {
+        const items: T[] = this.get<T[]>(instance);
+        const item: T = items.find(x => x[property].toString() === value)!;
+        return new Promise<T>((resolve) => {
+            return resolve(item);
         });
     }
 
-    public get<T> (instance: string): T {
+    public get<T>(instance: string): T {
         return JSON.parse(localStorage.getItem(instance)!);
     }
 
-    public save<T> (key: string, payload: T): void {
+    public save<T>(key: string, payload: T): void {
         localStorage.setItem(key, JSON.stringify(payload));
     }
 

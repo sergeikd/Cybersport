@@ -1,10 +1,12 @@
 import { produce } from "immer";
 import * as actionTypes from "../common/action-types";
+import * as instances from "../common/instances";
 import { LocalStorageProvider } from "../infrastructure/localStorage";
 import { IUser, IRole } from "../common/interfaces";
 
 const initialState = {
     loggedUser: {},
+    user:{},
     userList: new Array<IUser>(),
     roles: new Array<IRole>(),
 };
@@ -20,10 +22,10 @@ export const users = (state = initialState, action: any) => {
                 draft = {...initialState};
                 return draft;
             case actionTypes.GET_USERS:
-                draft.userList = localStorageProvider.get<IUser[]>("users");
+                draft.userList = localStorageProvider.get<IUser[]>(instances.USERS);
                 return draft;
             case actionTypes.GET_ROLES:
-                draft.roles = localStorageProvider.get<IRole[]>("roles");
+                draft.roles = localStorageProvider.get<IRole[]>(instances.ROLES);
                 return draft;
             case actionTypes.CHANGE_USER_ACTIVE:
                 const index =  draft.userList.findIndex(user => user.id === action.id);

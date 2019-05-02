@@ -1,5 +1,9 @@
+import { Dispatch } from "redux";
 import { IUser } from "../common/interfaces";
 import * as actionTypes from "../common/action-types";
+import { LocalStorageProvider } from "../infrastructure/localStorage";
+
+const localStorageProvider = new LocalStorageProvider();
 
 export const logIn = (user: IUser) => {
     return {

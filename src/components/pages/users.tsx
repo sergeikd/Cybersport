@@ -5,6 +5,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { Table, Form, Button } from "react-bootstrap";
 import { LocalStorageProvider } from "../../infrastructure/localStorage";
 import { IUser, IRole, IUserState, ILocalStorageProvider } from "../../common/interfaces";
+import * as instances from "../../common/instances";
 
 interface IUsersProps {
     getUsers: () => void;
@@ -59,7 +60,7 @@ class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersSta
     }
 
     handleSaveClick = () => () => {
-        this.localStorageProvider.save<IUser[]>("users", this.props.users);
+        this.localStorageProvider.save<IUser[]>(instances.USERS, this.props.users);
     }
 
     render(): React.ReactNode {

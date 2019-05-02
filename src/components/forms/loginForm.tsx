@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { logIn } from "../../actions/userAction";
 import { RouteComponentProps } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { Validation } from "./validation";
+import { logIn } from "../../actions/userAction";
+import * as instances from "../../common/instances";
 import { LocalStorageProvider } from "../../infrastructure/localStorage";
 import { IUser, ILocalStorageProvider } from "../../common/interfaces";
 
@@ -25,19 +26,18 @@ class LoginForm extends React.Component<IProps & RouteComponentProps, ILoginForm
     this.localStorageProvider = new LocalStorageProvider();
   }
   handleClick = () => async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.persist();
     const form: HTMLFormElement = event.currentTarget.form as HTMLFormElement;
 
     if (form.checkValidity() === true) {
       const inputElement = form[0] as HTMLInputElement;
       const userName = inputElement.value;
-      const user = await this.localStorageProvider.getUser(userName);
+      const user = await this.localStorageProvider.getSingle<IUser>(instances.USERS, "name", userName);
       if (user && user.isActive) {
         this.props.logIn(user);
         this.props.history.push("/");
       }
     }
-    event.preventDefault();
-    event.stopPropagation();
     this.setState({ validated: false });
   }
 

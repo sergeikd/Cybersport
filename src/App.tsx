@@ -33,7 +33,7 @@ class App extends Component<IProps> {
   componentDidMount(): void {
     const initData: IData = { ...data };
     for (const key in data as IData) {
-      this.localStorageProvider.putObject(key, initData[key]);
+      this.localStorageProvider.save(key, initData[key]);
     }
 
     const admin: IUser = {
