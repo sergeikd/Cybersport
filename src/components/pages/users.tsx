@@ -64,7 +64,7 @@ class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersSta
     }
 
     render(): React.ReactNode {
-        if (this.props.users instanceof Array && this.props.roles instanceof Array) {
+        if (this.props.users.length > 0 && this.props.roles.length > 0) {
             return (
                 <div className="page-container">
                     <br />
