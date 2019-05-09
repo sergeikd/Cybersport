@@ -11,6 +11,7 @@ import Logout from "./components/logout";
 import Users from "./components/pages/users";
 import Games from "./components/pages/games";
 import Game from "./components/pages/game";
+import EditGame from "./components/pages/editGame";
 import { Page404 } from "./components/pages/404";
 import { Page403 } from "./components/pages/403";
 import { logIn } from "./actions/userAction";
@@ -57,6 +58,7 @@ class App extends Component<IProps> {
             <Route path="/users" component={Users} />
             <Route path="/games" component={Games} />
             <Route path="/game" component={Game} />
+            <Route path="/edit-game/:nameUri" component={EditGame} />
             <Route path="/403" component={Page403} />
             <Route component={Page404} />
           </Switch>

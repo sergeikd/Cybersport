@@ -30,19 +30,19 @@ class Games extends React.Component<IGamesProps & RouteComponentProps, {}> {
                     <Table>
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Имя</th>
+                                <th>Путь</th>
                                 <th>Лого</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {this.props.games.map((game) => {
-                                const path = `/editGame/${game.id}`;
+                                const path = `/edit-game/${game.nameUri}`;
                                 return (
                                     <tr key={game.id}>
-                                        <td>{game.id}</td>
                                         <td>{game.name}</td>
+                                        <td>{game.nameUri}</td>
                                         <td><img className="game-image-preview"src={game.backgroundImage}/></td>
                                         <td>
                                             <Link to={path}>Изменить</Link>

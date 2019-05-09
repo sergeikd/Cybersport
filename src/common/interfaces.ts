@@ -13,6 +13,7 @@ export interface IRole {
 export interface IGame {
     id: number;
     name: string;
+    nameUri: string;
     backgroundImage: string;
 }
 

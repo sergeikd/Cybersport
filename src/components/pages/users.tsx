@@ -20,6 +20,7 @@ interface IUsersProps {
 interface IUsersState {
     wasChanged: boolean;
 }
+
 class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersState> {
     apiProvider: IApiProvider;
     constructor(props: IUsersProps & RouteComponentProps) {
@@ -46,9 +47,6 @@ class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersSta
     }
 
     handleChangeRole = () => (e: React.FormEvent<HTMLSelectElement> & React.FormEvent<HTMLOptionsCollection>) => {
-        console.log(e.currentTarget);
-        console.log(e.currentTarget.value);
-        console.log(e.currentTarget.id);
         const updatedUser: Partial<IUser> =  {
             id: Number(e.currentTarget.id),
             roleId: this.props.roles.filter(x => x.role === e.currentTarget.value)[0].id,
