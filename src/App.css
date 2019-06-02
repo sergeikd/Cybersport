@@ -191,12 +191,16 @@ a, a:visited, a:hover, a:active {
 }
 
 .game-image-preview {
-  max-width: 255px;
+  max-width: 256px;
 }
 
-.vertical-align {
-  display: table-cell;
-  vertical-align: middle;
+.game-image-max {
+  max-width: 512px;
+}
+
+.vertical-align-middle {
+  line-height: 100%!important;
+  vertical-align: middle!important;
 }
 
 .table > tbody > tr > td {
