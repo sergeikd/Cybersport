@@ -19,3 +19,12 @@ export const getGames = () => (dispatch: Dispatch) => {
             dispatch(fetchGames(gamesList));
         });
 };
+
+export const editGame = (updatedGame: IGame) => {
+    apiProvider.get<IGame[]>(instances.GAMES)
+        .then((gamesList) => {
+            const index = gamesList.findIndex(game => game.id === updatedGame.id);
+            gamesList[index] = updatedGame;
+            apiProvider.save(instances.GAMES, gamesList);
+        });
+};

@@ -1,5 +1,9 @@
 import { IApiProvider } from "../common/interfaces";
+import { data } from "../appData/defaultData";
 
+interface IData {
+    [key: string]: any;
+}
 export class ApiProvider implements IApiProvider {
 
     public get<T>(instance: string): Promise<T> {
@@ -18,5 +22,14 @@ export class ApiProvider implements IApiProvider {
 
     public save<T>(key: string, payload: T): void {
         localStorage.setItem(key, JSON.stringify(payload));
+    }
+
+    public initLocalStorage(): void {
+        const initData: IData = { ...data };
+        for (const key in { ...data }) {
+            if (data.hasOwnProperty(key) && localStorage.getItem(key) === null) {
+                this.save(key, initData[key]);
+            }
+        }
     }
 }

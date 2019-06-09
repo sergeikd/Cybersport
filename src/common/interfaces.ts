@@ -64,4 +64,5 @@ export interface IApiProvider {
     save<T>(key: string, payload: T): void;
     get<T> (instance: string): Promise<T>;
     getSingle<T>(instance: string, property: keyof T, value: string): Promise<T>;
+    initLocalStorage(): void;
 }

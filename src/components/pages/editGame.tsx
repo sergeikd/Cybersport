@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getGames } from "../../actions/gamesAction";
+import { getGames, editGame } from "../../actions/gamesAction";
 import { RouteComponentProps } from "react-router-dom";
 import { Table, Form, Col, Button } from "react-bootstrap";
-import { IUser, IGamesState, IGame } from "../../common/interfaces";
+import { IUser, IGamesState, IGame, IApiProvider } from "../../common/interfaces";
+import { ApiProvider } from "../../infrastructure/fakeApi";
+import * as instances from "../../common/instances";
 
 interface IMatchParams {
     nameUri: string;
@@ -11,7 +13,7 @@ interface IMatchParams {
 
 interface IGameEditProps extends RouteComponentProps<IMatchParams> {
     getGames: () => void;
-    saveGame: (game: IGame) => void;
+    editGame: (game: IGame) => void;
     games: IGame[];
     loggedUser: IUser;
 }
@@ -21,10 +23,12 @@ interface IGameEditState {
 }
 
 class EditGame extends React.Component<IGameEditProps & RouteComponentProps, IGameEditState> {
+    apiProvider: IApiProvider;
     wasChanged: boolean;
     constructor(props: IGameEditProps & RouteComponentProps) {
         super(props);
         this.wasChanged = false;
+        this.apiProvider = new ApiProvider();
     }
 
     state = {
@@ -52,7 +56,10 @@ class EditGame extends React.Component<IGameEditProps & RouteComponentProps, IGa
     }
 
     private saveButtonHandler = () => () => {
-        // this.props.saveGame(this.state.game);
+        const index = this.props.games.findIndex(game => game.id === this.state.game.id);
+        const updatedGames = this.props.games;
+        updatedGames[index] = this.state.game;
+        this.apiProvider.save(instances.GAMES, updatedGames);
     }
 
     private handleChange = (field: string) => (event: any) => {
@@ -161,4 +168,4 @@ const mapStateToProps = (state: IGamesState) => {
     };
 };
 
-export default connect(mapStateToProps, { getGames })(EditGame);
+export default connect(mapStateToProps, { getGames, editGame })(EditGame);

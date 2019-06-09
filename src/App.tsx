@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
 import { ApiProvider } from "./infrastructure/fakeApi";
-import { data } from "./appData/defaultData";
 import { IApiProvider, IUser } from "./common/interfaces";
 import { Header } from "./components/header/header";
 import LoginForm from "./components/forms/loginForm";
@@ -29,14 +28,7 @@ class App extends Component<IProps> {
   constructor(props: IProps) {
     super(props);
     this.apiProvider = new ApiProvider();
-  }
-
-  componentDidMount(): void {
-    const initData: IData = { ...data };
-    for (const key in data as IData) {
-      this.apiProvider.save(key, initData[key]);
-    }
-
+    this.apiProvider.initLocalStorage();
     const admin: IUser = {
       id: 0,
       name: "aaa", // admin

@@ -14,21 +14,22 @@ interface IState {
 }
 
 class Game extends React.Component<IProps, IState> {
-
-    componentDidMount() {
+    constructor(props: IProps) {
+        super(props);
         this.props.getNews();
     }
+
     render(): React.ReactNode {
         console.log(this.props.news);
         return (
 
-        <ListGroup  className="page-container">
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-        </ListGroup>
+            <ListGroup className="page-container">
+                <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+                <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+            </ListGroup>
         );
     }
 }
