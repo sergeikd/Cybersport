@@ -8,9 +8,9 @@ const UserMenu = ((props: { user: IUser }): JSX.Element | null => {
         case 0:
             return (
                 <div className="menu-left">
-                    <Link to="/users">Пользователи</Link>
+                    <Link to="/admin/users">Пользователи</Link>
                     <p className="menu-separator">|</p>
-                    <Link to="/games">Игры</Link>
+                    <Link to="/admin/games">Игры</Link>
                 </div>
             );
         case 1:

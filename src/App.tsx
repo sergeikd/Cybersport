@@ -47,10 +47,10 @@ class App extends Component<IProps> {
             <Route path="/" exact component={Home} />
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
-            <Route path="/users" component={Users} />
-            <Route path="/games" component={Games} />
+            <Route path="/admin/users" component={Users} />
+            <Route path="/admin/games" component={Games} />
             <Route path="/game" component={Game} />
-            <Route path="/edit-game/:nameUri" component={EditGame} />
+            <Route path="/admin/edit-game/:nameUri" component={EditGame} />
             <Route path="/403" component={Page403} />
             <Route component={Page404} />
           </Switch>

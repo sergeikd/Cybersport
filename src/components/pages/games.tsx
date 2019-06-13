@@ -38,7 +38,7 @@ class Games extends React.Component<IGamesProps & RouteComponentProps, {}> {
                         </thead>
                         <tbody>
                             {this.props.games.map((game) => {
-                                const path = `/edit-game/${game.nameUri}`;
+                                const path = `/admin/edit-game/${game.nameUri}`;
                                 return (
                                     <tr key={game.id}>
                                         <td>{game.name}</td>

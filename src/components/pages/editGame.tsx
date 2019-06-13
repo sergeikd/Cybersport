@@ -29,16 +29,15 @@ class EditGame extends React.Component<IGameEditProps & RouteComponentProps, IGa
         super(props);
         this.wasChanged = false;
         this.apiProvider = new ApiProvider();
+        this.state = {
+            game: {
+                id: 0,
+                name: "",
+                nameUri: "",
+                backgroundImage: ""
+            }
+        };
     }
-
-    state = {
-        game: {
-            id: 0,
-            name: "",
-            nameUri: "",
-            backgroundImage: ""
-        }
-    };
 
     private fileChangeHandler = (event: any) => {
         event.preventDefault();
@@ -60,15 +59,18 @@ class EditGame extends React.Component<IGameEditProps & RouteComponentProps, IGa
         const updatedGames = this.props.games;
         updatedGames[index] = this.state.game;
         this.apiProvider.save(instances.GAMES, updatedGames);
+        this.wasChanged = false;
     }
 
+    // why any? issue here - https://github.com/ant-design/ant-design/issues/6879#issuecomment-315997175
     private handleChange = (field: string) => (event: any) => {
         const value: string = event.target.value;
-        this.setState({ [field]: event.target.value } as Pick<IGameEditState, any>);
+        this.setState({ [field]: event.target.value } as Pick<IGameEditState, keyof(IGameEditState)>);
         this.setState(prevState => ({
             game: {...prevState.game,
             [field]: value
-        }}));
+            }
+        }));
     }
 
     componentDidMount(): void {
