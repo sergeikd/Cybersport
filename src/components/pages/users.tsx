@@ -39,7 +39,7 @@ class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersSta
         this.props.getRoles();
     }
 
-    handleClick = (userId: number) => () => {
+    handleActiveCheckboxClick = (userId: number) => () => {
         this.setState({
             wasChanged: true
         });
@@ -59,6 +59,9 @@ class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersSta
 
     handleSaveClick = () => () => {
         this.apiProvider.save<IUser[]>(instances.USERS, this.props.users);
+        this.setState({
+            wasChanged: false
+        });
     }
 
     render(): React.ReactNode {
@@ -96,7 +99,7 @@ class Users extends React.Component<IUsersProps & RouteComponentProps, IUsersSta
                                                 </Form.Control>
                                             </td>
                                             <td>
-                                                <Form.Check checked={user.isActive} onChange={this.handleClick(user.id)} />
+                                                <Form.Check checked={user.isActive} onChange={this.handleActiveCheckboxClick(user.id)} />
                                             </td>
                                         </tr>
                                     );
