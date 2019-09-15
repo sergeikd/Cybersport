@@ -7,7 +7,7 @@ import { IApiProvider, IUser } from "./common/interfaces";
 import { Header } from "./components/header/header";
 import LoginForm from "./components/forms/loginForm";
 import Logout from "./components/logout";
-import Home from "./components/pages/home";
+import Home from "./components/pages/home/home";
 import Users from "./components/pages/users";
 import Games from "./components/pages/games";
 import Game from "./components/pages/game";

@@ -1,17 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { getGames } from "../../actions/gamesAction";
-import { IUser, IGame } from "../../common/interfaces";
+import { getGames } from "../../../actions/gamesAction";
+import { IGame } from "../../../common/interfaces";
+import { HomeGameItem } from "./homeGameItem";
 
 interface IHomeProps {
     getGames: () => void;
     games: IGame[];
-    loggedUser: IUser;
 }
 
 interface IHomeState {
-    //wasChanged: boolean;
     games: {
         gamesList: IGame[],
     };
@@ -27,15 +25,10 @@ class Home extends React.Component<IHomeProps, {}> {
         return (
             <div className="page-container">
                 {this.props.games.map(game => {
-                    const path = `/game/${game.nameUri}`;
                     return (
-                        <div className="home-item" key={game.id}>
-                            <img className="game-image-max home-image" src={game.backgroundImage} />
-                            <div className="home-item-button">
-                                <Link className="home-item-button-link" to={path}>Подробнее</Link>
-                            </div>                            
-                        </div>
-                )})}
+                        <HomeGameItem {...game} key={game.id} />
+                    )
+                })}
             </div>
         );
     }
