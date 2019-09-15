@@ -6,14 +6,12 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   color: #A9E2F3;
-  /* text-decoration: none; */
 }
 
 .main-menu-container {
   display: inline-block;
   width: 1024px;
   min-width: 1024px;
-  /* min-height: 1024px; */
   overflow: hidden;  
   opacity: 0.9;
   background-color: #0B2161;
@@ -51,6 +49,34 @@ input {
 select {
   background-color: #0B2161!important;
   color: #A9E2F3!important;
+}
+
+.home-image {
+  padding: 2px;
+}
+
+.home-item {
+  position: relative;
+  float: left;
+}
+
+.home-item-button {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.home-item-button-link:hover {
+  background: #A9E2F3;
+  color: #0B2161;
+} 
+
+.home-item-button-link {
+  padding: .8em 1.8em;
+  font-size: 1.2em;
+  border: solid 1px white;
+  border-radius: 8px;
 }
 
 .logo {

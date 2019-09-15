@@ -92,7 +92,7 @@ class EditGame extends React.Component<IGameEditProps & RouteComponentProps, IGa
         this.setGameToStateFromProps();
     }
 
-    // why 'event: any'? issue here - https://github.com/ant-design/ant-design/issues/6879#issuecomment-315997175
+    // why 'event: any'? issue is here - https://github.com/ant-design/ant-design/issues/6879#issuecomment-315997175
     private handleChange = (field: string) => (event: any) => {
         const value: string = event.target.value;
         this.setState({ [field]: event.target.value } as Pick<IGameEditState, keyof (IGameEditState)>);
