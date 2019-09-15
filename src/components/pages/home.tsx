@@ -1,10 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { INewsState } from "../../common/interfaces";
-import { ListGroup } from "react-bootstrap";
 import { getGames } from "../../actions/gamesAction";
-import { IUser, IGamesState, IGame, IApiProvider } from "../../common/interfaces";
+import { IUser, IGame } from "../../common/interfaces";
 
 interface IHomeProps {
     getGames: () => void;
@@ -31,7 +29,7 @@ class Home extends React.Component<IHomeProps, {}> {
                 {this.props.games.map(game => {
                     const path = `/game/${game.nameUri}`;
                     return (
-                        <div className="home-item">
+                        <div className="home-item" key={game.id}>
                             <img className="game-image-max home-image" src={game.backgroundImage} />
                             <div className="home-item-button">
                                 <Link className="home-item-button-link" to={path}>Подробнее</Link>

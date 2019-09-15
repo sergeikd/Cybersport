@@ -50,7 +50,7 @@ class App extends Component<IProps> {
             <Route path="/logout" component={Logout} />
             <Route path="/admin/users" component={Users} />
             <Route path="/admin/games" component={Games} />
-            <Route path="/game" component={Game} />
+            <Route path="/game/:nameUri" component={Game} />
             <Route path="/admin/edit-game/:nameUri" component={EditGame} />
             <Route path="/403" component={Page403} />
             <Route component={Page404} />
