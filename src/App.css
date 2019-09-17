@@ -79,6 +79,11 @@ select {
   border-radius: 8px;
 }
 
+.news-list-item {
+  text-align: left;
+  background: transparent;
+}
+
 .logo {
   padding: 0;
   float: left;

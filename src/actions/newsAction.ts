@@ -5,16 +5,16 @@ import { ApiProvider } from "../infrastructure/fakeApi";
 
 const apiProvider = new ApiProvider();
 
-const fetchNews = (gamesList: INews[]) => {
+const fetchNews = (newsList: INews[]) => {
     return {
         type: actionTypes.GET_NEWS,
-        gamesList
+        newsList
     };
 };
 
 export const getNews = () => (dispatch: Dispatch) => {getNews
     apiProvider.get<INews[]>("news")
-        .then((gamesList) => {
-            dispatch(fetchNews(gamesList));
+        .then((newsList) => {
+            dispatch(fetchNews(newsList));
         });
 };

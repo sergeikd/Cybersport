@@ -28,7 +28,7 @@ export interface IState {
 export interface INews {
     id: number;
     text: string;
-    pictureUrl: string;
+    title: string;
     gameId:  number;
     authorId:  number;
 }
@@ -51,13 +51,19 @@ export interface IGamesState {
 }
 
 export interface INewsState {
-    newsList: INews[];
+    news: {
+        newsList: INews[],
+    };
 }
 
 export interface IAction {
     type: string;
     payload: any;
     [key: string]: any;
+}
+
+export interface IMatchParams {
+    nameUri: string;
 }
 
 export interface IApiProvider {
